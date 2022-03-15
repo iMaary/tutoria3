@@ -51,9 +51,9 @@ int main()
 	for (int i = 0; i < array_size; i++)
 		scanf("%d", &inputed_numbers[i]);
 
-	pthread_create(&threads[0], NULL, average, inputed_numbers);
-	pthread_create(&threads[1], NULL, miniNum, inputed_numbers);
-	pthread_create(&threads[2], NULL, maxNum, inputed_numbers);
+	pthread_create(&threads[0], NULL, (void *)average, (int *)inputed_numbers);
+	pthread_create(&threads[1], NULL, (void *)miniNum, (int *)inputed_numbers);
+	pthread_create(&threads[2], NULL, (void *)maxNum, (int *)inputed_numbers);
 
 	for (int i = 0; i < QNT_THREADS; i++)
 		pthread_join(threads[i], NULL);
