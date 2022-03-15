@@ -11,6 +11,8 @@ void *average(int *numbers)
 	for (int i = 0; i < array_size; i++)
 		sum += numbers[i];
 	printf("The average value is %d\n", (int)sum/array_size);
+	
+	return NULL;
 }
 
 void *miniNum(int *numbers)
@@ -22,6 +24,8 @@ void *miniNum(int *numbers)
 			lowest = numbers[i];
 	}
 	printf("The minimum value is %d\n", lowest);
+
+	return NULL;
 }
 
 void *maxNum(int *numbers)
@@ -33,6 +37,8 @@ void *maxNum(int *numbers)
 			biggest = numbers[i];
 	}
 	printf("The maximum value is %d\n", biggest);
+
+	return NULL;
 }
 
 int main()
@@ -40,7 +46,7 @@ int main()
 	pthread_t threads[QNT_THREADS];
 
 	scanf("%d", &array_size);
-  	int inputed_numbers[array_size];
+  int inputed_numbers[array_size];
 
 	for (int i = 0; i < array_size; i++)
 		scanf("%d", &inputed_numbers[i]);
@@ -49,7 +55,7 @@ int main()
 	pthread_create(&threads[1], NULL, miniNum, inputed_numbers);
 	pthread_create(&threads[2], NULL, maxNum, inputed_numbers);
 
-	for (int i = 0; i < array_size; i++)
+	for (int i = 0; i < QNT_THREADS; i++)
 		pthread_join(threads[i], NULL);
 
 	return 0;
